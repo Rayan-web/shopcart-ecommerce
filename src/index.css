@@ -54,4 +54,28 @@
   }
 }
 
+.borderOne{
+  border: 1px solid black;
+}
 
+.products {
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* display: flex;
+  gap: 10; */
+  display: grid;
+  grid-template-columns:repeat(4, 1fr) ;
+  gap: 20px;
+}
+.items{
+  grid-column:auto;
+}
+
+  
+select {
+    border:0px;
+    outline:0px;
+ }
+  
+  
+  
