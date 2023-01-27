@@ -6,28 +6,32 @@ import Categories from "./components/CategoriesNav";
 import Main from "./components/main";
 import { Provider } from "react-redux";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+  createRoutesFromElements,
+  Outlet,
+} from "react-router-dom";
 import Layout from "./pages/Layout";
 import Detailpage from "./components/detailpage";
+import Mainlayout from "./Layouts/Mainlayout";
+import Paypage from "./components/paypage";
 
 function App() {
   const [select, setSelect] = useState("");
-  return (
-    <div className="font-Montserrat">
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout setSelect={setSelect} />}>
-            <Route path="/" element={<Alertheader />} />
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Mainlayout />} />
 
-            <Route path="/" element={<Categories />} />
-            <Route path="/" element={<Main select={select} />} />
-          </Route>
-        </Routes>
-      </BrowserRouter> */}
-      <Layout />
-      <Detailpage />
-    </div>
+        <Route path="test" element={<Detailpage />} />
+        <Route path="payment" element={<Paypage />} />
+      </Route>
+    )
   );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

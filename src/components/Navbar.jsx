@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import * as Shopping from "../assets/lottie/shopping-cart.json";
 
 import "../index.css";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const defaultOptions = {
     loop: true,
@@ -17,12 +18,14 @@ const Navbar = () => {
   return (
     <nav className="body w-full justify-between font-medium md:mt-10 mt-3 lg:mt-10 relative items-center flex ">
       <div className="logo flex  ">
+        <Link to='/'>
         <div className="flex items-center  ">
           <div className="mb-1  ">
             <Lottie options={defaultOptions} height={50} width={50} />
           </div>
           <h1 className="text-primary font-bold text-xl">SHOPCART</h1>
         </div>
+        </Link>
       </div>
       <div className="menuIcon lg:hidden md:hidden  ">
         <svg

@@ -16,7 +16,10 @@ const Layout = ({ setSelect }) => {
         {/* <CategoriesNav setSelect={setSelect} /> */}
         {/* <Main /> */}
       </section>
+      <div className="">
       <Outlet />
+      </div>
+        
     </>
   );
 };
