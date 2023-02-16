@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Lottie from "react-lottie";
 import { AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
 import { CiShoppingCart } from "react-icons/ci";
@@ -6,10 +6,13 @@ import { BsSearch } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
 import * as Shopping from "../assets/lottie/shopping-cart.json";
-
 import "../index.css";
 import { Link } from "react-router-dom";
+import NavmenuMob from "./NavmenuMob";
+
 const Navbar = () => {
+  const[menu,setmenu]=useState(false)
+  
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,13 +24,18 @@ const Navbar = () => {
         <Link to='/'>
         <div className="flex items-center  ">
           <div className="mb-1  ">
+      
             <Lottie options={defaultOptions} height={50} width={50} />
           </div>
           <h1 className="text-primary font-bold text-xl">SHOPCART</h1>
         </div>
         </Link>
       </div>
-      <div className="menuIcon lg:hidden md:hidden  ">
+      <div onClick={()=>setmenu(true)}  className="menuIcon lg:hidden md:hidden  ">
+      {
+        
+        menu&&<NavmenuMob setmenu={  setmenu} menu={menu}  />
+      }
         <svg
           fill="#023d29"
           xmlns="http://www.w3.org/2000/svg"
@@ -42,12 +50,15 @@ const Navbar = () => {
       </div>
       <div className="links lg:block md:block hidden md:ml-10 lg:ml-10 ">
         <ul className="flex  md:space-x-5 space-x-2 lg:space-x-6">
-          <li className="flex  gap-1  ">
+          <li className="flex  gap-1  "  >
             Categories
             <IoIosArrowForward className="rotate-90 mt-1 " />
           </li>
+        
           <li>Deals</li>
+          
           <li>What's New</li>
+          
           <li>Delivery</li>
         </ul>
       </div>
@@ -76,6 +87,7 @@ const Navbar = () => {
           Cart
         </div>
       </div>
+      
     </nav>
   );
 };
