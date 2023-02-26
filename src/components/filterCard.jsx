@@ -7,13 +7,11 @@ import { addtolist} from "../redux/reducers/wishlist";
  import 'react-toastify/dist/ReactToastify.css'
  import toast, { Toaster } from 'react-hot-toast';
 
- const Card = ({product}) => {
+ const FilterCard = ({product}) => {
     const dispatch=useDispatch()
     const cartt=useSelector((state)=>state.wishlist.cart)
     const items=cartt.map((item)=>item.id)
-    const itemindex = cartt.findIndex(
-      (item) => item.id === items.id
-    );
+
     
     const printId=()=>{
       cartt.find(id=>id)
@@ -24,9 +22,13 @@ import { addtolist} from "../redux/reducers/wishlist";
       
         
       }
-  
-  
+   
+    
+   
   return (
+    
+
+    
     <div className=" border-2   w-11/12 py-5 items  rounded-2xl  " >
           <div className="  relative rounded-xl ">
             <div className="">
@@ -57,7 +59,7 @@ import { addtolist} from "../redux/reducers/wishlist";
           <div className="ml-2">
             <div className="  mt-3 flex justify-between ">
               <h1 className="font-semibold mb-0 ">{product.title.substring(0,10)}</h1>
-              
+           
               <h1 className="font-semibold">${product.price}</h1>
             </div>
             <h1>Lorem ipsum dolor sit amet.</h1>
@@ -138,17 +140,18 @@ import { addtolist} from "../redux/reducers/wishlist";
                 />
               </svg>
             </div>
-            <Link to={`products/${product.id}`} >
-            <div onClick={()=>handelAddToCard(product)} className=" hover:bg-primary hover:text-white hover:border-[#023d29] cursor-pointer ease-in duration-200 mt-3 font-medium items-center border-2  border-black gap-1 w-fit rounded-full px-2 py-1">
+            <Link to={`/products/${product.id}`} >
+            <div  onClick={()=>handelAddToCard(product)} className=" hover:bg-primary hover:text-white hover:border-[#023d29] cursor-pointer ease-in duration-200 mt-3 font-medium items-center border-2  border-black gap-1 w-fit rounded-full px-2 py-1">
               <h1 > Buy</h1>
             </div>
             </Link>
-            <div onClick={()=>handelAddToCard(product)} className=" hover:bg-primary hover:text-white hover:border-[#023d29] cursor-pointer ease-in duration-200 mt-3 font-medium items-center border-2  border-black gap-1 w-fit rounded-full px-2 py-1">
+            <div onClick={()=>handelAddToCard(product)}  className=" hover:bg-primary hover:text-white hover:border-[#023d29] cursor-pointer ease-in duration-200 mt-3 font-medium items-center border-2  border-black gap-1 w-fit rounded-full px-2 py-1">
               <h1 > Add to card</h1>
             </div>
           </div>
         </div>
+        
   );
 };
 
-export default Card;
+export default FilterCard;

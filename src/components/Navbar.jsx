@@ -7,12 +7,16 @@ import { BiSearch } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
 import * as Shopping from "../assets/lottie/shopping-cart.json";
 import "../index.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import NavmenuMob from "./NavmenuMob";
+import { useDispatch, useSelector } from "react-redux";
+import { close, open } from "../redux/reducers/navbarOpen";
 
 const Navbar = () => {
   const[menu,setmenu]=useState(false)
-  
+  const dispatch=useDispatch()
+  const state=useSelector((state)=>state.navbar.value)
+  console.log(state)
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -31,10 +35,10 @@ const Navbar = () => {
         </div>
         </Link>
       </div>
-      <div onClick={()=>setmenu(true)}  className="menuIcon lg:hidden md:hidden  ">
+      <div onClick={()=>dispatch(open())}  className="menuIcon lg:hidden md:hidden  ">
       {
         
-        menu&&<NavmenuMob setmenu={  setmenu} menu={menu}  />
+        state&&<NavmenuMob  />
       }
         <svg
           fill="#023d29"
@@ -82,10 +86,16 @@ const Navbar = () => {
           <AiOutlineUser />
           Account
         </div>
-        <div className=" lg:block md:block hidden  md:flex lg:flex gap-1 items-center">
+       
+        
+        <Link
+       to='wishlist'
+       >
+        <div className="  lg:block md:block hidden  md:flex lg:flex gap-1 items-center">
           <CiShoppingCart />
           Cart
         </div>
+       </Link>
       </div>
       
     </nav>

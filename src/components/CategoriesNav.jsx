@@ -1,179 +1,56 @@
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-const CategoriesNav = ({ setSelect }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { filtedProducts } from "../redux/reducers/products";
+const CategoriesNav = () => {
+  const dispatch=useDispatch()
+  const cartt=useSelector((state)=>state.wishlist.cart)
+  // const handelCat=(cat)=>{
+  //     cartt.filter((curDate)=>{
+  //     return curDate.category===cat;
+  //   });
+    
+  // }
+  const {category}=useParams()
   return (
     <nav className="body flex justify-between mt-10">
       <div className="">
         <ul className="flex gap-5 flex-wrap">
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            {/* <span className="font-medium text-base">Headphone</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg> */}
-
-            <select
-              className="bg-gray-300 "
-              onChange={(e) => setSelect(e.target.value)}
-            >
-              <option value="Shoes">Shoes</option>
-              <option value="Phones">Phones</option>
-              <option selected value="Headsets">
-                Headsets
-              </option>
-              <option value="T-shirt">T-shirt</option>
-            </select>
+          <Link to={"filteredby/jewelery"} >
+          <div onClick={()=>dispatch(filtedProducts('jewelery'))} className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
+            <span className="font-medium text-base">jewelery</span>
+            
           </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Price</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+          </Link>
+          <Link to={"filteredby/electronic"} >
+          <div onClick={()=>dispatch(filtedProducts('electronics'))}  className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
+            <span className="font-medium text-base">electronics</span>
+            
           </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Hello</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+          </Link>
+        <Link to={"filteredby/men's clothing"} >
+          <div onClick={()=>dispatch(filtedProducts("men's clothing"))} className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
+            <span className="font-medium text-base">men's clothing</span>
+            
           </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Hello</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+        </Link>
+        <Link to={"filteredby/woman's clothin"}  >
+          <div onClick={()=>dispatch(filtedProducts("women's clothing"))} className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
+            <span className="font-medium text-base">women's clothing</span>
+            
           </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Hello</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Hello</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-          <div className="flex items-center bg-gray-300 gap-1 rounded-full px-2 py-1 ">
-            <span className="font-medium text-base">Hello</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
+        </Link>
+       
+       
         </ul>
       </div>
       <div className="">
-        <ul>
-          <div className="flex  items-center w-fit border-2 border-gray-300 gap-1 rounded-full px-2 py-1">
-            <span> Sort by</span>
-            <svg
-              width={20}
-              height={20}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+      <div   className="flex items-center border-2 border-gray-400  bg-white gap-1 rounded-full px-2 py-1 ">
+            <span className="font-medium text-base">Sort By</span>
+            <IoIosArrowForward className="rotate-90 mt-1 " />
+            
           </div>
-        </ul>
       </div>
     </nav>
   );

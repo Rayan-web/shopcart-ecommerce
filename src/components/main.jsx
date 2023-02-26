@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import Image from "../assets/images/headphone.png"
 import { addData, fetchProducts } from "../redux/reducers/products";
 import Card from "./card";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 const Main = (props) => {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch();
@@ -25,7 +27,10 @@ const Main = (props) => {
       <h1 className="font-bold text-2xl">For You!</h1>
       <main className="mt-5 pb-10 products  ">
   
-      
+        {/* <div className="">
+        <Skeleton />
+        <Skeleton count={1} />
+        </div> */}
 
         {
           products.data.map((product)=>{

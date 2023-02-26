@@ -21,6 +21,18 @@ const dataSlice = createSlice({
   initialState: {
     data: [],
     selectedProduct: [],
+    filtredProducts: [],
+  },
+  reducers: {
+    filtedProducts(state, action) {
+      try {
+        const filter = state.data.filter(
+          (product) => product.category === action.payload
+        );
+
+        state.filtredProducts = filter;
+      } catch (error) {}
+    },
   },
   extraReducers: {
     [fetchProducts.fulfilled]: (state, { payload }) => {
@@ -29,9 +41,17 @@ const dataSlice = createSlice({
     [fetchProductsById.fulfilled]: (state, { payload }) => {
       state.selectedProduct = payload;
     },
+    // filtedProducts(state, action) {
+    //   try {
+    //     const filter = data.filter(
+    //       (product) => product.category === action.payload
+    //     );
+    //     state.filtedProducts = filter;
+    //   } catch (error) {}
+    // },
   },
 });
 
-export const { addData } = dataSlice.actions;
+export const { addData, filtedProducts } = dataSlice.actions;
 export const getSelectedProduct = (state) => state.products.selectedProduct;
 export default dataSlice.reducer;

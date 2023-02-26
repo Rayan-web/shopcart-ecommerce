@@ -3,21 +3,24 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { BiSearch } from 'react-icons/bi'
 import { CiShoppingCart } from 'react-icons/ci'
 import { IoIosArrowForward } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { close, open } from '../redux/reducers/navbarOpen'
 
 
 
 const NavmenuMob = ({setmenu,menu}) => {
+  const dispatch=useDispatch()
+  const state=useSelector((state)=>state.navbar.value)
   
-  const[close,setsclose]=useState()
-  console.log(menu)
+  console.log(state)
   return (
     
 
     <section className='overlay   ' >
       <div className="w-72 h-screen absolute top-0 right-0 z-40 bg-white ">
         
-      <div className="" onClick={()=>setmenu(false)}  >
-      <svg    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" absolute right-2 top-5 w-8 h-8">
+      <div className=""   >
+      <svg  onClick={()=>dispatch(open())}   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" border-2 absolute right-2 top-5 w-8 h-8">
   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
 </svg>
       </div>

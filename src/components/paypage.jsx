@@ -39,6 +39,7 @@ const[modal,setmodal]=useState(false)
 const dispatch=useDispatch();
 const {id}=useParams();
 
+const count=useSelector((state)=>state.counter.value)
 
 useEffect(()=>{
   dispatch(fetchProductsById(id))
@@ -62,8 +63,8 @@ const data=useSelector(getSelectedProduct)
                         <p className='text-gray-600'>color:pink</p>
                     </div>
                     <div className="">
-                        <h1 className='font-semibold text-xl'>$500</h1>
-                        <p className='text-gray-600'>Quantity:01</p>
+                        <h1 className='font-semibold text-xl'> ${ count * data.price} </h1>
+                        <p className='text-gray-600'>Quantity:{count}</p>
                     </div>
                     </div>
                 </div>
@@ -185,7 +186,7 @@ Check out with PayPal
          
            <Link to="modal" >
            <button disabled={!check && !cardCheck} style={{opacity:err?'100%':'70%'}} onClick={()=>setmodal(true)}  className=" w-full bg-primary rounded-full lg:px-7 md:py-2 py-1 px-3 md:px-5 lg:py-3 md:mt-10 mt-3  lg:mt-10 text-white">
-              Pay $444
+              Pay $ { count * data.price}
             </button>
            </Link>
 

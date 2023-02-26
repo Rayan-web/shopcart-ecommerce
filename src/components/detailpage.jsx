@@ -2,43 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Headphone from "../assets/images/headphone.png";
+import { decrement, increment } from "../redux/reducers/counter";
 import { fetchProductsById, getSelectedProduct } from "../redux/reducers/products";
+import Paypage from "./paypage";
 
 const Detailpage = () => {
  
   const dispatch=useDispatch();
+  const count=useSelector((state)=>state.counter.value)
+  const total=useSelector((state)=>state.counter.value)
   const {id}=useParams();
- 
- 
   useEffect(()=>{
     dispatch(fetchProductsById(id))
   },[dispatch,id])
   const data=useSelector(getSelectedProduct)
-  const[addmore,setAddMore]=useState(1)
-  const[Quantity,setQuantity]=useState(
 
-
-  addmore*data.price
-
-)
-console.log(`"test${Quantity}`)
-  const decrement=()=>{
-    setAddMore(addmore-1)
-  }
-  const increment=()=>{
-    setAddMore(addmore+1)
-  }
-  
   
   return (
-    <section className="body  ">
+    <section className="body font-Montserrat ">
           <div className="border-t-2 md:flex lg:flex gap-10  ">
-          <div className="bg-gray-100  rounded-xl mt-14 flex items-center justify-center  ">
+          <div className="bg-gray-100  flex-1  rounded-xl mt-14 flex items-center justify-center  ">
             <img className=" w-1/2 " src={data.image} alt="" />
           </div>
-          <div className="mt-14  mx-10 lg:mx-0 md:mx-0 ">
+          <div className="mt-14   flex-1  mx-10 lg:mx-0 md:mx-0 ">
             <h1 className="font-bold text-2xl mb-3 ">{data.title}</h1>
-            <p>
+            <p className="" >
               {data.description}
             </p>
             <div className="flex mb-5 mt-4 ">
@@ -120,7 +108,8 @@ console.log(`"test${Quantity}`)
             </div>
             <div className="border-t-2 border-b-2 mb-5  mt-5 ">
               <h1 className="font-semibold text-2xl mt-5 ">
-            {addmore*data.price}$ 
+            { count * data.price}$ 
+          
               </h1>
               <p className="mb-5">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere,
@@ -129,8 +118,9 @@ console.log(`"test${Quantity}`)
             </div>
             <div className="flex rounded-full bg-slate-100 w-24 py-2  justify-around  ">
               <button
-              onClick={()=>decrement()}
-              disabled={addmore===1}
+               disabled={count===1}
+              onClick={()=>dispatch(decrement())}
+             
               >
 
               <svg
@@ -146,9 +136,9 @@ console.log(`"test${Quantity}`)
                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
               </svg>
               </button>
-              <h1 className="text-primary font-medium text-lg">{addmore}</h1>
+              <h1 className="text-primary font-medium text-lg">  {count}</h1>
               <svg
-               onClick={()=>increment()}
+                onClick={()=>dispatch(increment())}
                 className="w-5"
                 fill="#023d29"
                 stroke="#023d29"
@@ -169,6 +159,7 @@ console.log(`"test${Quantity}`)
               <button className="bg-primary rounded-full lg:px-7 w-fit md:py-2 py-1 px-3 md:px-5 lg:py-3 md:mt-10 mt-3  lg:mt-10 text-white">
                 Buy now
               </button>
+            
               </Link>
               <button className="bg-white border-primary border-2 w-fit  rounded-full lg:px-7 md:py-2 py-1 px-1 md:px-5 lg:py-3 md:mt-10 mt-3  lg:mt-10 text-primary">
                 Add to card
